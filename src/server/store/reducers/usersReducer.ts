@@ -1,6 +1,9 @@
 import { IUser } from "../../types";
 import { Action } from "redux";
-import { IPayloadAction, userActionTypes } from "../actions/actionTypes";
+import { IPayloadAction, userActionTypes, IPayloadIdAction } from "../actions/actionTypes";
+import { SimpleStore } from "../SimpleStore";
+import { dashboardReducer } from "./dashboardReducer";
+import { initialAction } from "../actions/initialAction";
 
 const userInitial: IUser = {
     name: "John",
@@ -29,6 +32,31 @@ export const userReducer =
         case userActionTypes.SET_USERS: {
             const usersAction = action as IPayloadAction<IUser>;
             return usersAction.payload;
+        }
+        case userActionTypes.USER_DASHBOARD_ACTION: {
+            const userDashboardsIdAction = action as IPayloadIdAction<IPayloadAction<number | string>>;
+            const targetDashboardState = state.dashboards[userDashboardsIdAction.id];
+            const targetDashboardStore = new SimpleStore(targetDashboardState, dashboardReducer);
+
+            if (!targetDashboardState) {
+                targetDashboardStore.dispatch(initialAction());
+            }
+            targetDashboardStore.dispatch(userDashboardsIdAction.payload);
+            const newTargetDashboardState = targetDashboardStore.getState();
+
+            const newDashboardsStateToMerge = { };
+            newDashboardsStateToMerge[userDashboardsIdAction.id] = newTargetDashboardState;
+
+            const newDashboards = {
+                ...state.dashboards,
+                ...newDashboardsStateToMerge,
+            };
+
+            return {
+                ...state,
+                dashboards: newDashboards,
+            };
+
         }
         default: {
             return state;
