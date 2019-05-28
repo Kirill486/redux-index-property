@@ -1,0 +1,22 @@
+{
+  "name": "code-names-shift",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc --watch & nodemon public/index.js",
+    "build:server": "tsc"
+  },
+  "author": "Kirill Penkin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.16.0"
+  }
+}
