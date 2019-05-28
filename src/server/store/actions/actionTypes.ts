@@ -11,4 +11,5 @@ export enum dashboardActionTypes {
 
 export enum userActionTypes {
     SET_USERS = "SET_USERS",
+    USER_DASHBOARD_ACTION = "USER_DASHBOARD_ACTION",
 }
