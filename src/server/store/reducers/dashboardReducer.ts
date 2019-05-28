@@ -7,7 +7,7 @@ const initialState: IDashboard = {
     comment: "initialStateComment",
 };
 
-export const reducer =
+export const dashboardReducer =
 (
     state: IDashboard = initialState,
     action: Action | IPayloadAction<any>,
