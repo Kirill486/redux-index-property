@@ -4,7 +4,7 @@ import { IApplicationState } from "../types";
 
 export const store: Store<IApplicationState> = createStore(reducer);
 
-const logStata = () => console.log(store.getState());
+const logStata = () => console.log(JSON.stringify(store.getState(), undefined, 2));
 
 logStata();
 
