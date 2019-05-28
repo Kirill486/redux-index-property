@@ -1,5 +1,6 @@
 import { store } from "./store/configureStore";
 import { setStars, setComment } from "./store/actions/modelActions";
+import { userAction } from "./store/actions/userAction";
 
 store.dispatch({type: '1'});
 // store.dispatch(setStars(5));
