@@ -2,7 +2,6 @@ import { store } from "./store/configureStore";
 import { setStars, setComment } from "./store/actions/modelActions";
 import { userAction } from "./store/actions/userAction";
 
-store.dispatch({type: '1'});
 // store.dispatch(setStars(5));
 // store.dispatch(setComment("Oh no!! Who could've known that "));
 // store.dispatch(setComment("they would want a MAP (!its more eficient) of dashboards EACH!"));
