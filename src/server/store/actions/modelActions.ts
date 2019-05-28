@@ -1,10 +1,10 @@
 import { ActionCreator } from "redux";
-import { IPayloadAction, actionTypes } from "./actionTypes";
+import { IPayloadAction, dashboardActionTypes } from "./actionTypes";
 
 export const setStars: ActionCreator<IPayloadAction<number>> =
 (stars: number) => {
     return {
-        type: actionTypes.SET_STARS,
+        type: dashboardActionTypes.SET_STARS,
         payload: stars,
     };
 };
@@ -12,7 +12,7 @@ export const setStars: ActionCreator<IPayloadAction<number>> =
 export const setComment: ActionCreator<IPayloadAction<string>> =
 (comment: string) => {
     return {
-        type: actionTypes.SET_COMMENT,
+        type: dashboardActionTypes.SET_COMMENT,
         payload: comment,
     };
 };
