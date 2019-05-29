@@ -8,6 +8,9 @@ export class SimpleStore<S> {
     constructor(state: S, reducer: Reducer<S>) {
         this.state = state;
         this.reducer = reducer;
+        this.setState = this.setState.bind(this);
+        this.getState = this.getState.bind(this);
+        this.dispatch = this.dispatch.bind(this);
     }
 
     public setState(state: S) {
