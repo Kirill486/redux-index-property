@@ -1,9 +1,10 @@
 {
-  "name": "code-names-shift",
+  "name": "redux-index-property",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev", 
     "dev": "tsc --watch & nodemon public/index.js",
     "build:server": "tsc"
   },
@@ -11,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Kirill486/redux-index-property"
   },
   "dependencies": {
     "redux": "^4.0.1",
