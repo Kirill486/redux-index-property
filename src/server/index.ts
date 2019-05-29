@@ -1,7 +1,7 @@
 import { store } from "./store/configureStore";
 import { setStars, setComment } from "./store/actions/modelActions";
 import { userAction } from "./store/actions/userAction";
-import { thunkUserAction } from "./store/actions/thunkAction";
+import { thunkUserAction, asyncTimeoutAction, controllerAction } from "./store/actions/thunkAction";
 
 // store.dispatch(setStars(5));
 // store.dispatch(setComment("Oh no!! Who could've known that "));
@@ -17,7 +17,11 @@ const newGoodComment = "now it's ok=)";
 store.dispatch(userAction(dashboardId, setStars(newValidNumberOfStars)));
 store.dispatch(userAction(dashboardId, setComment(newGoodComment)));
 
-const newDashboardId = 42; // and everithing
-const description = "the answer to life the universe and everything";
+// const newDashboardId = 42; // and everithing
+// const description = "the answer to life the universe and everything";
 
-store.dispatch(userAction(newDashboardId, thunkUserAction(newDashboardId, description)));
+// store.dispatch(userAction(newDashboardId, thunkUserAction(newDashboardId, description)));
+
+// store.dispatch(userAction(newDashboardId + 10, asyncTimeoutAction()));
+
+store.dispatch(userAction(66, controllerAction()));
