@@ -4,6 +4,7 @@ export class SimpleStore<S> {
 
     private state: S;
     private reducer: Reducer<S>;
+    private thunkActionFinished = false;
 
     constructor(state: S, reducer: Reducer<S>) {
         this.state = state;
@@ -22,11 +23,15 @@ export class SimpleStore<S> {
     }
 
     public dispatch(action: any) {
+        if (this.thunkActionFinished) {
+            console.error("You shouldn't dispatch async actions to SimpleStore");
+        }
         if (typeof action === "object") {
             const newState = this.reducer(this.state, action);
             this.setState(newState);
         } else if (typeof action ===  "function") {
             action(this.dispatch, this.getState); // becouse we have thunk
+            this.thunkActionFinished = true;
         }
     }
 }
