@@ -20,6 +20,7 @@
   "devDependencies": {
     "nodemon": "^1.18.10",
     "tsc": "^1.20150623.0",
-    "tslint": "^5.16.0"
+    "tslint": "^5.16.0",
+    "typescript": "^3.5.0-dev.20190525"
   }
 }
