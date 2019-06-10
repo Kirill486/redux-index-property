@@ -2,7 +2,7 @@
 The easy way to create and maintain maps(key indexed properties) in redux state
 
 ## Install and Run
-```typescript
+```
 npm install
 
 npm start
