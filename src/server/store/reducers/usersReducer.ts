@@ -57,6 +57,15 @@ export const userReducer =
                 dashboards: newDashboards,
             };
 
+            // const acceptor = (state: IUser, id) => {
+            //     state.dashboards[userDashboardsIdAction.id];
+            // }
+
+            // return {
+            //     ...state,
+            //     dashboards: idIndexedProperty(acceptor, dashboardReducer)
+            // }
+
         }
         default: {
             return state;
