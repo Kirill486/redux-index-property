@@ -1,27 +1,23 @@
 import { store } from "./store/configureStore";
 import { setStars, setComment } from "./store/actions/modelActions";
 import { userAction } from "./store/actions/userAction";
-import { thunkUserAction, asyncTimeoutAction, controllerAction } from "./store/actions/thunkAction";
-
-// store.dispatch(setStars(5));
-// store.dispatch(setComment("Oh no!! Who could've known that "));
-// store.dispatch(setComment("they would want a MAP (!its more eficient) of dashboards EACH!"));
-
-// dashboard with id === 7 probably has a misstaken amount
-// of stars - 99
-
+import { controllerAction } from "./store/actions/thunkAction";
+import * as assert from "assert";
+import { resultAssertion, initialAssertion, fixedStars, fixedComment } from "./store/constants";
 const dashboardId = 7;
 const newValidNumberOfStars = 5;
 const newGoodComment = "now it's ok=)";
 
+assert.deepEqual(store.getState(), initialAssertion);
+
 store.dispatch(userAction(dashboardId, setStars(newValidNumberOfStars)));
+
+assert.deepEqual(store.getState(), fixedStars);
+
 store.dispatch(userAction(dashboardId, setComment(newGoodComment)));
 
-// const newDashboardId = 42; // and everithing
-// const description = "the answer to life the universe and everything";
-
-// store.dispatch(userAction(newDashboardId, thunkUserAction(newDashboardId, description)));
-
-// store.dispatch(userAction(newDashboardId + 10, asyncTimeoutAction()));
+assert.deepEqual(store.getState(), fixedComment);
 
 store.dispatch(userAction(66, controllerAction()));
+
+assert.deepEqual(store.getState(), resultAssertion);
