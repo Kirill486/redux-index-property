@@ -4,6 +4,7 @@ import { IPayloadAction, userActionTypes, IPayloadIdAction } from "../actions/ac
 import { SimpleStore } from "../SimpleStore";
 import { dashboardReducer } from "./dashboardReducer";
 import { initialAction } from "../actions/initialAction";
+import { PropertyAcceptor } from "../PropertyAcceptor";
 
 const userInitial: IUser = {
     name: "John",
@@ -57,13 +58,31 @@ export const userReducer =
                 dashboards: newDashboards,
             };
 
-            // const acceptor = (state: IUser, id) => {
-            //     state.dashboards[userDashboardsIdAction.id];
-            // }
+            const getTargetDashboard =
+            (
+                statePart: IUser,
+                dashboardId: number,
+            ) => statePart.dashboards[dashboardId];
+
+            const setTargetDashboard =
+            (
+                statePart: IUser,
+                dashboardId: number,
+                newValue,
+            ) => {
+                statePart.dashboards[dashboardId] = newValue;
+                return statePart;
+            };
+
+            const acceptor = new PropertyAcceptor(getTargetDashboard, setTargetDashboard);
+
+            const idIndexedProperty = new IdIndexedProperty(acceptor, dashboardReducer, state);
+            idIndexedProperty.dispatch(userDashboardsIdAction.payload);
+            const dashboards = idIndexedProperty.getState();
 
             // return {
             //     ...state,
-            //     dashboards: idIndexedProperty(acceptor, dashboardReducer)
+            //     dashboards
             // }
 
         }
