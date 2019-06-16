@@ -34,4 +34,8 @@ export class KeyIndexedProperty<StateOuter, StateInner> {
         this.acceptor.setProperty(this.outerState, newPropertyValue);
         return this.outerState;
     }
+
+    public getInnerState() {
+        return this.innerStore.getState();
+    }
 }
