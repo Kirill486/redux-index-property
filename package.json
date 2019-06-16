@@ -6,7 +6,7 @@
   "types": "public/redux-index-property/index.d.ts",
   "scripts": {
     "start": "npm run dev",
-    "dev": "tsc --watch & nodemon public/index.js",
+    "dev": "tsc --watch & nodemon public/server/index.js",
     "build:server": "tsc"
   },
   "author": "Kirill Penkin",
