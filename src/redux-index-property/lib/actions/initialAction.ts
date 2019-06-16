@@ -1,5 +1,5 @@
 import { ActionCreator, Action } from "redux";
-import { initialActionType } from "./actionTypes";
+import { initialActionType } from "../../../server/store/actions/actionTypes";
 
 export const initialAction: ActionCreator<Action> =
 () => {

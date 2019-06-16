@@ -1,7 +1,7 @@
 {
   "name": "redux-index-property",
   "version": "1.0.0",
-  "description": "",
+  "description": "The easy way to create and maintain maps(key indexed properties) in redux state",
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
