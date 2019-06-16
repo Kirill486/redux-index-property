@@ -1,11 +1,8 @@
 import { IUser } from "../../types";
 import { Action } from "redux";
 import { IPayloadAction, userActionTypes, IPayloadIdAction } from "../actions/actionTypes";
-import { SimpleStore } from "../SimpleStore";
 import { dashboardReducer } from "./dashboardReducer";
-import { initialAction } from "../actions/initialAction";
-import { PropertyAcceptor } from "../PropertyAcceptor";
-import { KeyIndexedProperty } from "../KeyIndexedProperty";
+import { KeyIndexedProperty, PropertyAcceptor } from "../../../redux-index-property";
 
 const userInitial: IUser = {
     name: "John",
