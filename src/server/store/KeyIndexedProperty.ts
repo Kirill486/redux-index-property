@@ -1,13 +1,13 @@
 import { PropertyAcceptor } from "./PropertyAcceptor";
 import { SimpleStore } from "./SimpleStore";
+import { initialAction } from "./actions/initialAction";
 
 export class KeyIndexedProperty<StateOuter, StateInner> {
 
     private acceptor: PropertyAcceptor<StateOuter, StateInner>;
-    // private reducer;
-    private state: StateOuter;
+    private outerState: StateOuter;
 
-    private store: SimpleStore<StateInner>;
+    private innerStore: SimpleStore<StateInner>;
 
     constructor(
         acceptor: PropertyAcceptor<StateOuter, StateInner>,
@@ -15,22 +15,23 @@ export class KeyIndexedProperty<StateOuter, StateInner> {
         state: StateOuter,
     ) {
         this.acceptor = acceptor;
-        this.state = state;
+        this.outerState = state;
 
-        const targetPropertyValue = this.acceptor.getProperty(this.state, );
-        this.store = new SimpleStore<StateInner>(targetPropertyValue, reducer);
+        const targetPropertyValue = this.acceptor.getProperty(this.outerState);
+        this.innerStore = new SimpleStore<StateInner>(targetPropertyValue, reducer);
+        this.innerStore.dispatch(initialAction());
+
+        this.dispatch = this.dispatch.bind(this);
+        this.getState = this.getState.bind(this);
     }
 
     public dispatch(action) {
-        this.store.dispatch(action);
+        this.innerStore.dispatch(action);
     }
 
     public getState() {
-        const newPropertyValue = this.store.getState();
-        const newStateToMerge = Object.assign({}, this.state);
-        this.acceptor.setProperty()
-
+        const newPropertyValue = this.innerStore.getState();
+        this.acceptor.setProperty(this.outerState, newPropertyValue);
+        return this.outerState;
     }
-
-
 }

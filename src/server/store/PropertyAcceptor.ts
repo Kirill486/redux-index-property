@@ -1,15 +1,13 @@
 export type IPropertyGetter<StateOuter, StateInner> =
 (
     state: StateOuter,
-    id: number,
 ) => StateInner;
 
 export type IPropertySetter<StateOuter, StateInner> =
 (
     state: StateOuter,
-    id: number,
     newValue: StateInner,
-) => StateInner;
+) => void;
 
 export class PropertyAcceptor<StateOuter, StateInner> {
 
