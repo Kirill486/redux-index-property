@@ -4,6 +4,8 @@ import { IPayloadAction, userActionTypes, IPayloadIdAction } from "../actions/ac
 import { SimpleStore } from "../SimpleStore";
 import { dashboardReducer } from "./dashboardReducer";
 import { initialAction } from "../actions/initialAction";
+import { PropertyAcceptor } from "../PropertyAcceptor";
+import { KeyIndexedProperty } from "../KeyIndexedProperty";
 
 const userInitial: IUser = {
     name: "John",
@@ -35,36 +37,30 @@ export const userReducer =
         }
         case userActionTypes.USER_DASHBOARD_ACTION: {
             const userDashboardsIdAction = action as IPayloadIdAction<IPayloadAction<number | string>>;
-            const targetDashboardState = state.dashboards[userDashboardsIdAction.id];
-            const targetDashboardStore = new SimpleStore(targetDashboardState, dashboardReducer);
 
-            if (!targetDashboardState) {
-                targetDashboardStore.dispatch(initialAction());
-            }
-            targetDashboardStore.dispatch(userDashboardsIdAction.payload);
-            const newTargetDashboardState = targetDashboardStore.getState();
+            const getTargetDashboard =
+            (
+                statePart: IUser,
+            ) => statePart.dashboards[userDashboardsIdAction.id];
 
-            const newDashboardsStateToMerge = { };
-            newDashboardsStateToMerge[userDashboardsIdAction.id] = newTargetDashboardState;
-
-            const newDashboards = {
-                ...state.dashboards,
-                ...newDashboardsStateToMerge,
+            const setTargetDashboard =
+            (
+                statePart: IUser,
+                newValue,
+            ) => {
+                statePart.dashboards[userDashboardsIdAction.id] = newValue;
             };
+
+            const acceptor = new PropertyAcceptor(getTargetDashboard, setTargetDashboard);
+
+            const idIndexedProperty = new KeyIndexedProperty(acceptor, dashboardReducer, state);
+            idIndexedProperty.dispatch(userDashboardsIdAction.payload);
+            const dashboards = idIndexedProperty.getState();
 
             return {
                 ...state,
-                dashboards: newDashboards,
+                ...dashboards,
             };
-
-            // const acceptor = (state: IUser, id) => {
-            //     state.dashboards[userDashboardsIdAction.id];
-            // }
-
-            // return {
-            //     ...state,
-            //     dashboards: idIndexedProperty(acceptor, dashboardReducer)
-            // }
 
         }
         default: {
