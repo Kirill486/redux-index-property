@@ -1,6 +1,6 @@
 export type Reducer<S> = (state: S, action: any) => S;
 
-export class SimpleStore<S> {
+export class LightWeightStore<S> {
 
     private state: S;
     private reducer: Reducer<S>;
