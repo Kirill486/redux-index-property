@@ -24,7 +24,7 @@ export class SimpleStore<S> {
 
     public dispatch(action: any) {
         if (this.thunkActionFinished) {
-            console.error("You shouldn't dispatch async actions to SimpleStore");
+            throw new Error("You shouldn't dispatch async actions to simple store");
         }
         if (typeof action === "object") {
             const newState = this.reducer(this.state, action);
