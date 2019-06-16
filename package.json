@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The easy way to create and maintain maps(key indexed properties) in redux state",
   "main": "public/redux-index-property/index.js",
+  "types": "public/redux-index-property/index.d.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "tsc --watch & nodemon public/index.js",
