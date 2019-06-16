@@ -6,7 +6,7 @@
     "sourceMap": true
   },
   "include": [
-    "src/server/**/*.ts"
+    "src/server/**/*.ts", "src/redux-index-property/*.ts", "src/redux-index-property/lib/actions/initialAction.ts", "src/redux-index-property/lib/PropertyAcceptor.ts", "src/redux-index-property/lib/LightWeightStore.ts"
   ],
   "exclude": [
     "node_modules"
