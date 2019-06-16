@@ -55,11 +55,10 @@ export const userReducer =
 
             const idIndexedProperty = new KeyIndexedProperty(acceptor, dashboardReducer, state);
             idIndexedProperty.dispatch(userDashboardsIdAction.payload);
-            const dashboards = idIndexedProperty.getState();
+            const newState = idIndexedProperty.getState();
 
             return {
-                ...state,
-                ...dashboards,
+                ...newState,
             };
 
         }
