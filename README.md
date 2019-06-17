@@ -48,7 +48,7 @@ case userActionTypes.USER_DASHBOARD_ACTION: {
 Here we have our idIndexedProperty calculating the next state out of current state and dispatched action.
 The two things to mention here are:
 1. Our reducer (```dashboardReducer``` in our case) is written like it manages the single state instance
-2. We separate our access logic (search for the target property) from our calculating logic.
+2. We separate our access logic (search for the target property) from our calculating logic with ```PropertyAcceptor``` .
 
 ## Initial intent.
 So, why do we need key indexed properties in our state?
