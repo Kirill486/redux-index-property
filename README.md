@@ -10,6 +10,46 @@ npm start
 In this application you have [the redux store that](https://github.com/Kirill486/redux-index-property/commit/d5b5dbbac8b459400cbd78b6fb90210906cdfda0) suddenly got [more complicated](https://github.com/Kirill486/redux-index-property/commit/f97b67bce241c2d697f45e512f3150c90e2369fd?diff=split), so you come up with the decent [API](https://github.com/Kirill486/redux-index-property/commit/b8da3c275def618c6f05f0435bd188b348f49b2a).
 API usage examples are in index.ts. I did my best to make [the code](https://github.com/Kirill486/redux-index-property/blob/master/src/server/index.ts) readable.
 
+Then it's a good time to meet some code:
+
+Reducer:
+```
+switch (action.type) {
+case userActionTypes.USER_DASHBOARD_ACTION: {
+            const userDashboardsIdAction = action as IPayloadIdAction<IPayloadAction<number | string>>;
+
+            const getTargetDashboard =
+            (
+                statePart: IUser,
+            ) => statePart.dashboards[userDashboardsIdAction.id];
+
+            const setTargetDashboard =
+            (
+                statePart: IUser,
+                newValue,
+            ) => {
+                statePart.dashboards[userDashboardsIdAction.id] = newValue;
+            };
+
+            const acceptor = new PropertyAcceptor(getTargetDashboard, setTargetDashboard);
+
+            const idIndexedProperty = new KeyIndexedProperty(acceptor, dashboardReducer, state);
+            idIndexedProperty.dispatch(userDashboardsIdAction.payload);
+            const newState = idIndexedProperty.getState();
+
+            return {
+                ...newState,
+            };
+
+        }
+    }
+```
+
+Here we have our idIndexedProperty calculating the next state out of current state and dispatched action.
+The two things to mention here are:
+1. Our reducer (```dashboardReducer``` in our case) is written like it manages the single state instance
+2. We separate our access logic (search for the target property) from our calculating logic.
+
 ## Initial intent.
 So, why do we need key indexed properties in our state?
 
