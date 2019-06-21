@@ -2,9 +2,12 @@
   "name": "redux-index-property",
   "version": "1.0.2",
   "description": "The easy way to create and maintain maps(key indexed properties) in redux state",
-  "keywords": ["redux", "model", "map"],
+  "keywords": [
+    "redux",
+    "model",
+    "map"
+  ],
   "main": "public/redux-index-property/index.js",
-  "types": "public/redux-index-property/index.d.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "tsc --watch & nodemon public/server/index.js",
