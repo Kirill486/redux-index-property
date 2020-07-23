@@ -1,6 +1,6 @@
 {
   "name": "redux-index-property",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The easy way to create and maintain maps(key indexed properties) in redux state",
   "keywords": [
     "redux",
